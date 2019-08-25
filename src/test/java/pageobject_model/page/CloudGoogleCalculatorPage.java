@@ -1,21 +1,23 @@
-package hurtmeplentytest;
+package pageobject_model.page;
 
-import hurtmeplentytask.Helpers;
 import org.openqa.selenium.By;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import pageobject_model.Helpers;
 
-import java.util.concurrent.TimeUnit;
+public class CloudGoogleCalculatorPage {
 
-public class BaseTest extends Helpers {
+    public static final WebDriver driver = new ChromeDriver();
 
-    @BeforeTest
-    public static void setUp() {
-        Helpers.driver.get("https://cloud.google.com/products/calculator/");
-        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.switchTo().frame(0);
+    public static void openCalulatorPage() {
+        Helpers.waitUntilClicable("//a[@href='https://cloud.google.com/pricing/calculators']", driver);
+        Helpers.clickOnFoundElementByXpath("//a[@href='https://cloud.google.com/pricing/calculators']", driver);
+    }
+
+    public static void fillingForm() throws InterruptedException {
+        Thread.sleep(5000);
+        driver.switchTo().
+                frame(0);
         Helpers.waitUntilClicable("//input[@id='input_52']", driver);
         Helpers.clickOnFoundElementByXpath("//input[@id='input_52']", driver);
         Helpers.typeTextInFoundTextFields("//input[@id='input_52']", driver, "4");
@@ -36,7 +38,7 @@ public class BaseTest extends Helpers {
         Helpers.clickOnFoundElementByXpath("//div[@class='md-select-menu-container md-active md-clickable']//md-option[@value='2']", driver);
         Helpers.waitUntilClicable("//md-select[@placeholder='Datacenter location']/md-select-value", driver);
         Helpers.clickOnFoundElementByXpath("//md-select[@placeholder='Datacenter location']/md-select-value", driver);
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        Helpers.waitUntilClicable("//*[@class='md-select-menu-container md-active md-clickable']//*[@value='europe-west3']", driver);
         Helpers.clickOnFoundElementByXpath("//*[@class='md-select-menu-container md-active md-clickable']//*[@value='europe-west3']", driver);
         Helpers.waitUntilClicable("//md-select[@placeholder='Committed usage']/md-select-value", driver);
         Helpers.clickOnFoundElementByXpath("//md-select[@placeholder='Committed usage']/md-select-value", driver);
@@ -45,7 +47,7 @@ public class BaseTest extends Helpers {
         Helpers.clickOnFoundElementByXpath("//button[@class='md-raised md-primary cpc-button md-button md-ink-ripple']", driver);
     }
 
-    public static String getEstimateResult() {
+    public static String getEstimatedResuts() {
         String estimateResult = driver.findElement(By.xpath("//*[@id='resultBlock']//*[@class='md-title']/b")).getText();
         return estimateResult;
     }
@@ -73,11 +75,5 @@ public class BaseTest extends Helpers {
     public static String getCommitmentTerm() {
         String commitmentTerm = driver.findElement(By.xpath("//*[@id='compute']/md-list/md-list-item[6]/div")).getText();
         return commitmentTerm;
-    }
-
-
-    @AfterTest
-    public static void teardown() {
-        driver.quit();
     }
 }
