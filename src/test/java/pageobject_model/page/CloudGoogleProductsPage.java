@@ -1,24 +1,26 @@
 package pageobject_model.page;
 
-import org.openqa.selenium.By;
-import pageobject_model.Helpers;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-import java.util.concurrent.TimeUnit;
+public class CloudGoogleProductsPage extends BasePage {
 
-public class CloudGoogleProductsPage {
-
-    public static String getEstimateResult() {
-        String estimateResult = driver.findElement(By.xpath("//*[@id='resultBlock']//*[@class='md-title']/b")).getText();
-        return estimateResult;
+    protected CloudGoogleProductsPage initElements() {
+        PageFactory.initElements(super.driver, this);
+        return this;
     }
 
-    public static void openPage() {
-        driver.get("https://cloud.google.com/");
-        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+    @FindBy(xpath = "//ul/li[4]/a[@href='https://cloud.google.com/products/' and @track-name='products']")
+    private WebElement productsTab;
+
+    public CloudGoogleProductsPage(WebDriver driver) {
+        super(driver);
     }
 
-    public static void openMenu() {
-        Helpers.clickOnFoundElementByXpath("//a[@href='https://cloud.google.com/products/' and @track-name='products']", driver);
-        Helpers.clickOnFoundElementByXpath("//a[@track-metadata-eventdetail='seeAllProducts']", driver);
+    public CloudGoogleProductsPage openPage() {
+        productsTab.click();
+        return this;
     }
 }
