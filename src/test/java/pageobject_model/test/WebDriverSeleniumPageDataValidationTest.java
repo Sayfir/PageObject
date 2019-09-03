@@ -1,18 +1,15 @@
 package pageobject_model.test;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageobject_model.page.CloudGoogleCalculatorPage;
-import pageobject_model.page.CloudGoogleHomePage;
 import pageobject_model.page.CloudGooglePricingPage;
 import pageobject_model.page.CloudGoogleProductsPage;
 
 public class WebDriverSeleniumPageDataValidationTest extends BaseTest {
 
     @Test
-    public static void testGetCorrectEstimationValue() throws InterruptedException {
-        new CloudGoogleHomePage(driver).openPage();
+    public void testGetCorrectEstimationValue() throws InterruptedException {
         new CloudGoogleProductsPage(driver).openPage();
         new CloudGooglePricingPage(driver).openPage();
         String estimateResult = new CloudGoogleCalculatorPage(driver)

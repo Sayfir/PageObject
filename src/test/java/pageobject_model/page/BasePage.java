@@ -4,9 +4,11 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class BasePage extends MainClass {
 
-    protected abstract BasePage openPage();
-    protected abstract BasePage initElements();
     public BasePage(WebDriver driver) {
-       super.driver = driver;
+        super.driver = driver;
     }
+
+    protected abstract BasePage openPage() throws InterruptedException;
+
+    protected abstract BasePage initElements();
 }

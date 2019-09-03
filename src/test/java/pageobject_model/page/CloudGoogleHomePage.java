@@ -11,13 +11,13 @@ public class CloudGoogleHomePage extends BasePage {
     }
 
     @Override
-    public CloudGoogleHomePage openPage() {
-        super.driver.get(HOMEPAGE_URL);
-        super.driver.manage().window().maximize();
-        return null;
+    public CloudGoogleHomePage openPage() throws InterruptedException {
+        driver.get(HOMEPAGE_URL);
+        driver.manage().window().maximize();
+        return this;
     }
 
     protected BasePage initElements() {
-        return null;
+        return this;
     }
 }
