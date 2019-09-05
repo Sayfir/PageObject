@@ -15,6 +15,7 @@ public class CloudGooglePricingPage extends BasePage {
 
     public CloudGooglePricingPage(WebDriver driver) {
         super(driver);
+        initElements();
     }
 
     public CloudGooglePricingPage openPage() {

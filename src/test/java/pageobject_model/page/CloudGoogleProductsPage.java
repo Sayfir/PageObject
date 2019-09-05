@@ -16,17 +16,17 @@ public class CloudGoogleProductsPage extends BasePage {
 
     public CloudGoogleProductsPage(WebDriver driver) {
         super(driver);
+        initElements();
     }
 
     protected CloudGoogleProductsPage initElements() {
-        PageFactory.initElements(new AjaxElementLocatorFactory(driver, 100), this);
-        return this;
+        PageFactory.initElements(driver, this);
+        return null;
     }
 
     public CloudGoogleProductsPage openPage() throws InterruptedException {
         productsTab.click();
-        // driver.findElement(By.xpath("//*[@id='top_of_page']/div[1]/div[1]//nav/ul/li[4]/a")).click();
-        //   seeAllProductsLink.click();
+        seeAllProductsLink.click();
         return this;
     }
 }
