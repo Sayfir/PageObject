@@ -78,9 +78,9 @@ public class CloudGoogleCalculatorPage extends BasePage {
     }
 
     public CloudGoogleCalculatorPage fillForm() throws InterruptedException {
-        switchToCalculatorPageFrame().fillInstancesNumberField();
-        chooseMachineType().activateGpuCheckbox().
-                chooseGpuNumber().chooseGpuType().chooseLocalSsd()
+        switchToCalculatorPageFrame().fillInstancesNumberField()
+                .chooseMachineType().activateGpuCheckbox()
+                .chooseGpuNumber().chooseGpuType().chooseLocalSsd()
                 .chooseDataCenter().chooseCommittedUsage().submitButton.click();
         return this;
     }
